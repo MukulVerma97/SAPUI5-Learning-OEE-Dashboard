@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog>
+        <ComboBox id="country1" items="{/country/}" selectionChange="onCountry" width="100%" placeholder="select the Country">
+            <items>
+                <core:Item key="{Key}" text="{Name}" />
+            </items>
+        </ComboBox>
+        <endButton>
+            <Button text="Submit" icon="sap-icon://accept" press="countryClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

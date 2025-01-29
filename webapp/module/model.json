@@ -1,0 +1,40 @@
+{
+    "users": [
+      {
+        "id": 0,
+        "name": "Virat Kholi",
+         "Password":"virat123",
+        "email": "adam.carter@unilogic.com"
+      
+        
+      },
+      {
+        "id": 1,
+        "name": "Kharthik",
+         "Password":"karthik123",
+        "email": "leanne.brier@connic.org"
+       
+      },
+      {
+        "id": 2,
+        "name": "Rahul",
+         "Password":"rahul123",
+        "email": "leanne.brier@connic.org"
+       
+      },
+       {
+        "id": 3,
+        "name": "Bumrah",
+        "Password":"bumb123",
+        "email": "leanne.brier@connic.org"
+       
+      },
+      {
+        "id": 4,
+        "name": "Rohit sharma",
+       "Password":"rohit123",
+        "email": "leanne.brier@connic.org"
+       
+      }
+    ]
+}

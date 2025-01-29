@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="onSecond" title=" Sec !!! " contentWidth="500px">
+        <SearchField id="searchField2" width="100%" placeholder="Search for..." enableSuggestions="true" search=".onSearch3" suggest=".onSuggest2" suggestionItems="{ path: '/ninja'}">
+            <SuggestionItem text="{Name}" key="{Name}" />
+        </SearchField>
+        <!-- <subHeader>
+			<OverflowToolbar>
+				<SearchField liveChange=".onSearch" width="100%" />
+			</OverflowToolbar>
+		</subHeader>  !-->
+        <List id="idList2" items="{/ninja}" selectionChange=".onSelectionChange2" mode="MultiSelect" growing="true" growingThreshold="50" includeItemInSelection="true">
+            <infoToolbar>
+                <OverflowToolbar visible="false" id="idInfoToolbar2">
+                    <Label id="idFilterLabel2" />
+                </OverflowToolbar>
+            </infoToolbar>
+            <StandardListItem title="{Name}" description="{ninjaId}" iconDensityAware="false" iconInset="false" />
+        </List>
+        <beginButton>
+            <Button icon="sap-icon://accept" press=".onSubmit2" />
+        </beginButton>
+        <endButton>
+            <Button icon="sap-icon://sys-cancel-2" press=".onClose2" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

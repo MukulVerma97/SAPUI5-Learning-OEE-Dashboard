@@ -1,0 +1,168 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" xmlns="sap.ui.table" xmlns:core="sap.ui.core" controllerName="Learning.controller.Production">
+    <m:Page showHeader="true" class="sapUiContentPadding Oee">
+        <!-- HEADER CONTENT         -->
+        <m:headerContent>
+            <m:Button icon="sap-icon://value-help" id="first" text="Hokage" type="Transparent" press=".onFirst" />
+
+            <m:ToolbarSpacer />
+
+            <m:Button icon="sap-icon://value-help" text="Raikage" type="Transparent" press=".onSecond" id="second" />
+
+            <m:ToolbarSpacer />
+
+            <m:Button icon="sap-icon://value-help" type="Transparent" text="Kazekage" press=".onThird" id="third" />
+            <m:ToolbarSpacer />
+
+            <m:Text text="" id="showTime" />
+        </m:headerContent>
+
+        <m:Text text="Current Shift Order" class="sapUiSmallMarginBegin" />
+
+        <!--  FIRST COBNTENT  -->
+
+        <m:Panel class="- sapUiSmallMarginEnd Vbox1">
+            <l:Splitter>
+                <m:VBox>
+                    <m:Text text="10000007097-0080" class="content1" />
+                    <m:Text text="METRIC LINE PACKAGING" class="content1" />
+                    <m:VBox>
+                        <m:Text text="" />
+                    </m:VBox>
+                    <m:Text text="10001728" class="content1" />
+                    <m:Text text="REGENT TILE FARMHOUSE RED" class="content1" />
+                    <m:Text text="Production Version : 001" class="content1" />
+                    <m:Text text="Crew Size : 2.00" class="content1" />
+                    <m:Text text="Started at : Jan21, 2022, 1:80:00PM" class="content1" />
+
+                    <m:layoutData>
+                        <l:SplitterLayoutData size="80%" resizable="false" />
+                    </m:layoutData>
+                </m:VBox>
+                <m:VBox>
+                    <m:Text text="Remaining: 18,080,00" />
+                    <m:VBox>
+                        <m:Text text="" />
+                    </m:VBox>
+                    <m:Text text="Active (Machine)" class="active" />
+                    <m:Text text="Total Planned : 18,800,00 PC" class="content1" />
+                    <m:Text text="Total Production/Total Scrap : 220.00 PC/10.00 PC" class="content1" />
+                    <m:Text text="Produced in Current Shift : 0.00 PC" class="content1" />
+                    <m:Text text="Standard Rate : 81,018,00 PC/4.04 h" class="content1" />
+
+                    <m:layoutData>
+                        <l:SplitterLayoutData size="auto" />
+                    </m:layoutData>
+                </m:VBox>
+            </l:Splitter>
+        </m:Panel>
+        <!-- 2 content  -->
+        <m:Text text="Production Data " class="sapUiSmallMarginBegin" />
+
+        <m:content>
+            <m:Panel>
+                <Table rows="{/ProductCollection}" visibleRowCount="3" id="Production">
+                    <columns>
+                        <Column width="8rem">
+                            <m:Label text="Parameter" />
+                            <template>
+                                <m:Text text="{Name}" wrapping="false" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Quantity" />
+                            <template>
+                                <m:Input width="7rem" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="UOM" />
+                            <template>
+                                <m:Button icon="sap-icon://value-help" id="column" text="PC" type="Transparent" press=".onFirst" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Reason Code" />
+                            <template>
+                                <m:Button text="{reason}" icon="{icon}" press="openTable" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Comments" />
+                            <template>
+                                <m:Button text="{comments}" icon="{icon}" press="openCombo" id="combo" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Deatils" />
+                            <template>
+                                <m:Button icon="sap-icon://inspection" text="Deatils" type="Transparent" press="showPdf" id="Pdf" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Report Qty per Shift" />
+                            <template>
+                                <m:Text text="{Shift}" wrapping="false" />
+                            </template>
+                        </Column>
+                    </columns>
+                </Table>
+            </m:Panel>
+            <m:Text text="Activity Data" />
+
+            <!-- <m:Panel>
+                <Table rows="{/ProductCollection}" visibleRowCount="1">
+                    <columns>
+                        <Column width="8rem">
+                            <m:Label text="Parameter" />
+                            <template>
+                                <m:Text text="{Name}" wrapping="false" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Quantity" />
+                            <template>
+                                <m:Input width="7rem" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="UOM" />
+                            <template>
+                                <m:Button icon="sap-icon://value-help" id="setup" text="PC" type="Transparent" press=".onFirst" />
+                            </template>
+                        </Column>
+
+                        <Column width="8rem">
+                            <m:Label text="Deatils" />
+                            <template>
+                                <m:Button icon="sap-icon://inspection" text="Deatils" type="Transparent" press="showPdf" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Report Qty per Shift" />
+                            <template>
+                                <m:Text text="{Shift}" wrapping="false" />
+                            </template>
+                        </Column>
+                        <Column width="8rem">
+                            <m:Label text="Last Report Date" />
+                            <template>
+                                <m:Text text="{Shift}" wrapping="false" />
+                            </template>
+                        </Column>
+                    </columns>
+                </Table>
+            </m:Panel> -->
+        </m:content>
+        <!-- <m:Panel>
+            <m:PDFViewer source="{/Source}" title="{/Title}" height="{/Height}" />
+        </m:Panel> -->
+
+        <m:footer>
+            <m:Bar>
+                <m:contentRight>
+                    <m:Button text="Save" icon="sap-icon://save" press="showPdf" id="final" />
+                </m:contentRight>
+            </m:Bar>
+        </m:footer>
+    </m:Page>
+</mvc:View>

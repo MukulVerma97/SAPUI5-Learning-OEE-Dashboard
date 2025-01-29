@@ -1,0 +1,52 @@
+<mvc:View xmlns:cards="sap.f.cards" controllerName="Learning.controller.Home" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table">
+    <Page id="Home" showHeader="true" showNavButton="false" title="THIS IS HOME PAGE" backgroundDesign="Solid">
+        <headerContent>
+            <Button icon="sap-icon://arrow-right" press="onNext" />
+        </headerContent>
+
+        <!-- <subHeader>
+            <tnt:ToolHeader>
+                <Button text="HOME" type="Transparent" press="onHome" />
+                <Button text="Form" type="Transparent" press="onForm" />
+                <Button text="User Deatils" type="Transparent" press="onUserDeatil" />
+
+                <Button text="NEWS" type="Transparent" press="onNews" />
+                <Link text="Flipkart" subtle="true" tooltip="Click here to shop" target="_blank" href="https://www.flipkart.com/" />
+
+                <ToolbarSpacer />
+            </tnt:ToolHeader>
+        </subHeader> -->
+        <content>
+            <Button text=" Good Morning" type="Emphasized" press="goodMorning" class="goodMorning" />
+
+            <Panel height="30%" class="sapUiResponsiveContentPadding">
+                <VBox>
+                    <HBox height="100%" justifyContent="End" alignItems="Center" class="blackBackground">
+                        <Text text="Go to Oee Dashboard from Side Navigation" />
+                    </HBox>
+                    <Text text="hellooo" />
+                </VBox>
+            </Panel>
+
+            <!-- <mvc:XMLView viewName="Learning.view.Form" /> -->
+            <!-- <mvc:XMLView viewName="Learning.view.Table" /> -->
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Link text="Manage Order" class="pad" press="onForm" />
+                <Link text="Manage Downtime" class="pad" press="onUserDeatil" />
+                <Link text="Report Production" class="pad" />
+                <Link text="Manage Downtime" class="pad" />
+                <Link text="Report Speed Loss" class="pad" />
+                <Link text="Review Shift" class="pad" />
+                <Link text="GI" class="pad" />
+                <Link text="ZORDER" class="pad" />
+
+                <Link text="SLOC TRANS" class="pad" />
+                <Link text="Printing Label" press="onPrinting" class="pad" />
+
+                <Link text="Shift" class="pad" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

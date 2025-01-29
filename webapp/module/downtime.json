@@ -1,0 +1,97 @@
+{"minor":{
+    "okay":
+    [
+        {
+            "Work Unit":"minor",
+            "Start Time":"12.00",
+            "End Time":"14.00",
+            "Duration":"5 hrs",
+            "Type":"light",
+            "Reason Code":"OEE123",
+            "Notification":"Green",
+            "Details":"Fine"
+    
+        }
+    ]
+}
+,
+"all":{
+    "okay":
+    [
+        {
+        "Work Unit":"all",
+        "Start Time":"12.00",
+        "End Time":"14.00",
+        "Duration":"5 hrs",
+        "Type":"Medium",
+        "Reason Code":"OEE123",
+        "Notification":"Orange",
+        "Details":"Alarming"
+            
+        }
+    ]
+},
+"line":{
+    "okay":
+    [
+        {
+            "Work Unit":"line",
+            "Start Time":"12.00",
+            "End Time":"14.00",
+            "Duration":"5 hrs",
+            "Type":"Heavy",
+            "Reason Code":"OEE123",
+            "Notification":"Red",
+            "Details":"Danger"
+            
+        }
+    ]
+},
+    "shift":{
+        "okay":
+        [
+            {
+                "Work Unit":"shift",
+            "Start Time":"12.00",
+            "End Time":"14.00",
+            "Duration":"5 hrs",
+            "Type":"Heavy",
+            "Reason Code":"OEE123",
+            "Notification":"Red",
+            "Details":"Danger"
+                
+            }
+        ]
+    },
+"shared":{
+    "okay":
+    [
+        {
+            "Work Unit":"shared",
+            "Start Time":"12.00",
+            "End Time":"14.00",
+            "Duration":"5 hrs",
+            "Type":"Heavy",
+            "Reason Code":"OEE123",
+            "Notification":"Red",
+            "Details":"Danger"
+            
+        }
+    ]
+},
+"flow":{
+    "okay":
+    [
+        {
+            "Work Unit":"flow",
+            "Start Time":"12.00",
+            "End Time":"14.00",
+            "Duration":"5 hrs",
+            "Type":"Heavy",
+            "Reason Code":"OEE123",
+            "Notification":"Red",
+            "Details":"Danger"
+            
+        }
+    ]
+}}

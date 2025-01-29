@@ -1,0 +1,84 @@
+<mvc:View controllerName="Learning.controller.Downtime" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:m="sap.m" xmlns:layout="sap.ui.layout">
+    <Page>
+        <content>
+            <IconTabBar select="onSelect">
+                <items>
+                    <IconTabSeparator />
+                    <IconTabFilter icon="sap-icon://along-stacked-chart" iconColor="Positive" text="Minor Downtime" key="minor" />
+                    <IconTabFilter icon="sap-icon://machine" iconColor="Critical" text="ALL Downtime" key="all" />
+                    <IconTabFilter icon="sap-icon://quality-issue" iconColor="Negative" text="Line Down" key="line" />
+                    <IconTabFilter icon="sap-icon://receipt" iconColor="Negative" text="Shared downtime" key="shared" />
+                    <IconTabFilter icon="sap-icon://accelerated" iconColor="Positive" text="Shifts Break" key="shift" />
+                    <IconTabFilter icon="sap-icon://quality-issue" iconColor="Negative" text="Flow Time" key="flow" />
+                </items>
+            </IconTabBar>
+
+            <Table id="om" inset="false" showSeparators="Inner" items="{/okay/}">
+                <infoToolbar>
+                    <OverflowToolbar>
+                        <CheckBox text="Open Work" />
+                        <CheckBox text="untagged" />
+                    </OverflowToolbar>
+                </infoToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Work Unit" />
+                    </Column>
+                    <Column>
+                        <Text text="Start Time" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="End Time" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Duration" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Type" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Reason Code" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Notification" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Details" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{Work Unit}" />
+                            <Text text="{Start Time}" />
+                            <Text text="{End Time}" />
+                            <Text text="{Duration}" />
+                            <Text text="{Type}" />
+                            <Text text="{Reason Code}" />
+                            <Text text="{Notification}" />
+                            <Text text="{Details}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <HBox>
+                    <Button icon="sap-icon://add" text="ADD Notification" class="pad" />
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://split" text="Split" class="pad" />
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://arrow-top" text="Report Up" class="pad" />
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://error" text="Delete" class="pad" />
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://edit" text="Edit" press="onPrinting" class="pad" />
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://add" text="Report New" class="pad" press="onReport" />
+                    <ToolbarSpacer />
+                </HBox>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,57 @@
+{
+  "catalog": {
+    "shopping": {
+      "categories": [
+        
+        {"name": "Men", "categories": [
+          {"name":"Clothing", "categories": [
+            {"name": "Shirts", "categories": [
+              {"name": "Polo T-shirt", "amount": 800, "currency": "rupee", "size": "M"},
+              {"name": "White Shirt", "amount": 1200, "currency": "rupee", "size": "L"}
+            ]},
+            {"name": "Pants", "categories": [
+              {"name": "Blue Jeans", "amount": 1500, "currency": "rupee", "size": "M"},
+              {"name": "Stretch Pant", "amount": 1800, "currency": "rupee", "size": "S"}
+            ]}
+           
+        
+          ]}
+          
+         
+        
+        ]},
+         {"name": "Electronics", "categories": [
+          {"name":"Mobile", "categories": [
+            {"name": "android", "categories": [
+              {"name": "Galaxy z flip", "amount": 80000, "currency": "rupee", "size": "12gb"},
+              {"name": "Oneplus 10", "amount": 60000, "currency": "rupee", "size": "16gb"}
+            ]},
+            {"name": "IOS", "categories": [
+              {"name": "Iphone 14", "amount": 1200000, "currency": "rupee", "size": "12gb"},
+              {"name": "Iphone 14 pro", "amount": 130000, "currency": "rupee", "size": "16gb"}
+            ]}
+           
+        
+          ]}
+          
+         
+        
+        ]}
+
+        ]}
+
+    },
+  "sizes": [
+    {"key": "XS", "value": "Extra Small"},
+    {"key": "S", "value": "Small"},
+    {"key": "M", "value": "Medium"},
+    {"key": "L", "value": "Large"},
+    {"ram":"12", "value":"12gb"},
+    {"ram":"16", "value":"16gb"}
+  ],
+  "ram":[
+    {"key": "12", "value": "12gb"},
+    {"key": "16", "value": "16gb"}
+  ]
+   
+  }

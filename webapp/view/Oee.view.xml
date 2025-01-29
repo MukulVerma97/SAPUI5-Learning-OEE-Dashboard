@@ -1,0 +1,199 @@
+<mvc:View
+    xmlns:internal="sap.landvisz.internal"
+    xmlns:cards="sap.f.cards"
+    controllerName="Learning.controller.Oee"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:tnt="sap.tnt"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:l="sap.ui.layout"
+    xmlns:chart="sap.suite.ui.commons"
+    xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:vizData="sap.viz.ui5.data"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:t="sap.ui.table"
+>
+    <Page showHeader="true" class="Oee">
+        <headerContent>
+            <Button icon="sap-icon://value-help" id="first" text="Hokage" type="Transparent" press=".onFirst" />
+
+            <ToolbarSpacer />
+
+            <Button icon="sap-icon://value-help" text="Raikage" type="Transparent" press=".onSecond" id="second" />
+
+            <ToolbarSpacer />
+
+            <Button icon="sap-icon://value-help" type="Transparent" text="Kazekage" press=".onThird" id="third" />
+            <ToolbarSpacer />
+
+            <Text text="" id="showTime" />
+        </headerContent>
+
+        <!--             for Current Shift Order         -->
+
+        <Text text="Current Shift Order" class="sapUiSmallMarginBegin" />
+
+        <Panel class="- sapUiSmallMarginEnd Vbox1">
+            <l:Splitter>
+                <VBox>
+                    <Text text="10000007097-0050" class="content1" />
+                    <Text text="METRIC LINE PACKAGING" class="content1" />
+                    <VBox>
+                        <Text text="" />
+                    </VBox>
+                    <Text text="10001726" class="content1" />
+                    <Text text="REGENT TILE FARMHOUSE RED" class="content1" />
+                    <Text text="Production Version : 001" class="content1" />
+                    <Text text="Crew Size : 2.00" class="content1" />
+                    <Text text="Started at : Jan21, 2022, 1:50:00PM" class="content1" />
+
+                    <layoutData>
+                        <l:SplitterLayoutData size="50%" resizable="false" />
+                    </layoutData>
+                </VBox>
+                <VBox>
+                    <Text text="Remaining: 16,080,00" />
+                    <VBox>
+                        <Text text="" />
+                    </VBox>
+                    <Text text="Active (Machine)" class="active" />
+                    <Text text="Total Planned : 16,300,00 PC" class="content1" />
+                    <Text text="Total Production/Total Scrap : 220.00 PC/10.00 PC" class="content1" />
+                    <Text text="Produced in Current Shift : 0.00 PC" class="content1" />
+                    <Text text="Standard Rate : 31,015,00 PC/4.04 h" class="content1" />
+
+                    <layoutData>
+                        <l:SplitterLayoutData size="auto" />
+                    </layoutData>
+                </VBox>
+            </l:Splitter>
+        </Panel>
+
+        <!--                       for current Shift KPI                       -->
+
+        <Panel>
+            <l:Splitter>
+                <VBox>
+                    <VBox>
+                        <Text text="Current Shift KPIs" />
+                        <HBox backgroundDesign="Solid" class="kpi" height="20%">
+                            <l:Splitter>
+                                <HBox class="untagged" height="10%">
+                                    <Text text="100%" />
+                                    <Text text="Available" />
+
+                                    <layoutData>
+                                        <l:SplitterLayoutData size="20%" resizable="false" />
+                                    </layoutData>
+                                </HBox>
+                                <VBox class="untagged">
+                                    <Text text="0.00%" />
+                                    <Text text="Speed" />
+
+                                    <layoutData>
+                                        <l:SplitterLayoutData size="20%" resizable="false" />
+                                    </layoutData>
+                                </VBox>
+
+                                <VBox class="untagged">
+                                    <Text text="0.00%" />
+                                    <Text text="Quality" />
+
+                                    <layoutData>
+                                        <l:SplitterLayoutData size="20%" resizable="false" />
+                                    </layoutData>
+                                </VBox>
+                                <VBox class="untagged">
+                                    <Text text="0.00%" />
+                                    <Text text="Overall Equipment" />
+
+                                    <layoutData>
+                                        <l:SplitterLayoutData size="auto" resizable="false" />
+                                    </layoutData>
+                                </VBox>
+                            </l:Splitter>
+                        </HBox>
+                    </VBox>
+
+                    <layoutData>
+                        <l:SplitterLayoutData size="70%" resizable="false" />
+                    </layoutData>
+                </VBox>
+
+                <VBox height="30%">
+                    <Text text="Untagged" />
+
+                    <l:Splitter>
+                        <HBox height="10%" class="untagged">
+                            <Text text="Unaccounted Speed Loss" />
+
+                            <Text text="09999999" class="sapUiMediumMarginBegin" />
+                        </HBox>
+                    </l:Splitter>
+
+                    <layoutData>
+                        <l:SplitterLayoutData size="auto" />
+                    </layoutData>
+                </VBox>
+            </l:Splitter>
+        </Panel>
+
+        <Text text="TL-1 PACK METRIC LINE AVALIBALITY PACAGING" />
+
+        <content>
+            <chart:ChartContainer autoAdjustHeight="true" id="chartContainer">
+                <chart:ChartContainerContent>
+                    <chart:content>
+                        <viz:VizFrame height='20%' width="20%" id="idVizFrame" class="viz" vizType="bar">
+                            <viz:dataset>
+                                <vizData:FlattenedDataset data="{/Reports}">
+                                    <vizData:dimensions>
+                                        <vizData:DimensionDefinition name="Items" value="{Items}" />
+
+                                        <!-- <vizData:DimensionDefinition name="Time" value="{Time}"/> -->
+                                    </vizData:dimensions>
+
+                                    <vizData:measures>
+                                        <vizData:MeasureDefinition name="Available" value="{Available}" />
+
+                                        <vizData:MeasureDefinition name="Unschedule" value="{Unschedule}" />
+
+                                        <vizData:MeasureDefinition name="Schedule" value="{Schedule}" />
+
+                                        <vizData:MeasureDefinition name="Shift Basic" value="{Shift Basic}" />
+                                    </vizData:measures>
+                                </vizData:FlattenedDataset>
+                            </viz:dataset>
+
+                            <viz:feeds>
+                                <vizFeeds:FeedItem type="Measure" uid="valueAxis" values="Available,Unschedule,Schedule,Shift Basic" />
+
+                                <!-- <vizFeeds:FeedItem type="Dimension" uid="categoryAxis" values="Time"/> -->
+
+                                <vizFeeds:FeedItem type="Dimension" uid="categoryAxis" values="Items" />
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </chart:content>
+                </chart:ChartContainerContent>
+            </chart:ChartContainer>
+        </content>
+
+        <!-- Foooter -->
+        <footer>
+            <Bar>
+                <contentMiddle>
+                    <Link text="Report Production" class="pad" press="onReport" />
+                    <Link text="Manage Downtime" class="pad" press="onDowntime" />
+                    <Link text="Report Speed Loss" class="pad" press="onSpeedLoss" />
+                    <Link text="Manage Order" class="pad" press="onManage" />
+
+                    <Link text="Printing Label" press="onPrinting" class="pad" />
+
+                    <Link text="Shift" class="pad" />
+                </contentMiddle>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

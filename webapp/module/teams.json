@@ -1,0 +1,35 @@
+{
+    "ProductCollection":[
+        {
+            "Name":"Yield",
+            "Shift":"0.00 PC",
+            "reason":"",
+            "icon":"",
+            "comments":""
+
+        },
+         {
+            "Name":"Rewake",
+            "Shift":"0.00 PC",
+            "reason":"Assign",
+            "icon":"sap-icon://value-help",
+            "comments":"Add"
+
+
+
+
+        },
+          {
+            "Name":"Scrap",
+            "Shift":"0.00 PC",
+            "reason":"Assign",
+            "icon":"sap-icon://value-help",
+            "comments":"Add"
+
+
+
+
+
+        }
+    ]
+}

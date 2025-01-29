@@ -1,0 +1,83 @@
+{
+    "tom" : [
+        {
+            "Loading Time" : "1.56",
+            "Unscheduled Downtime" : "4.56",
+            "Target Quantity" : "23",
+            "Reported Quantity" : "12",
+            "Reported Speed Loss" : "2.3",
+            "Open Speed Loss" : "3.456"
+        },
+        {
+            "Loading Time" : "3.67",
+            "Unscheduled Downtime" : "2.36",
+            "Target Quantity" : "5",
+            "Reported Quantity" : "4.78",
+            "Reported Speed Loss" : "2.32",
+            "Open Speed Loss" : "3.009"
+        },
+        {
+            "Loading Time" : "9.01",
+            "Unscheduled Downtime" : "7.89",
+            "Target Quantity" : "123",
+            "Reported Quantity" : "3.46",
+            "Reported Speed Loss" : "4.67",
+            "Open Speed Loss" : "3.4"
+        },
+        {
+            "Loading Time" : "23.33",
+            "Unscheduled Downtime" : "3.23",
+            "Target Quantity" : "56",
+            "Reported Quantity" : "0.34",
+            "Reported Speed Loss" : "2.32",
+            "Open Speed Loss" : "2.3"
+        },
+        {
+            "Loading Time" : "1.07",
+            "Unscheduled Downtime" : "4.3",
+            "Target Quantity" : "36",
+            "Reported Quantity" : "6.6",
+            "Reported Speed Loss" : "4.345",
+            "Open Speed Loss" : "9.343"
+        },
+        {
+            "Loading Time" : "3.56",
+            "Unscheduled Downtime" : "3.5",
+            "Target Quantity" : "45",
+            "Reported Quantity" : "4.45",
+            "Reported Speed Loss" : "6.7",
+            "Open Speed Loss" : "3.2"
+        }
+
+    ],
+    "data" : [
+        {
+            "Speed Loss" : "1.78",
+            "Reported by" : "Rohit",
+            "Reason Code" : "TRF",
+            "Comments" : "will work",
+            "Root cause machine" : "XWR45"
+        },
+        {
+            "Speed Loss" : "0.78",
+            "Reported by" : "Mandeep",
+            "Reason Code" : "IOF",
+            "Comments" : "will work",
+            "Root cause machine" : "XW985"
+        },
+        {
+            "Speed Loss" : "2.978",
+            "Reported by" : "Mukul",
+            "Reason Code" : "TRF",
+            "Comments" : "need attention",
+            "Root cause machine" : "XWR45"
+        },
+        {
+            "Speed Loss" : "1.238",
+            "Reported by" : "Mayur",
+            "Reason Code" : "QWF",
+            "Comments" : "will work",
+            "Root cause machine" : "YPI45"
+        }
+    ]
+}

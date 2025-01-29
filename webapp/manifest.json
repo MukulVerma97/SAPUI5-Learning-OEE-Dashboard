@@ -1,0 +1,272 @@
+
+{
+
+    "_version": "1.12.0",
+
+    "sap.app": {
+
+        "id": "Learning",
+
+        "type": "application",
+
+        "i18n": "i18n/i18n.properties",
+
+        "applicationVersion": {
+
+            "version": "1.0.0"
+
+        },
+
+        "title": "{{appTitle}}",
+
+        "description": "{{appDescription}}",
+
+        "sourceTemplate": {
+
+            "id": "learn",
+
+            "version": "1.40.12"
+
+        }
+
+    },
+
+    "sap.ui": {
+
+        "technology": "UI5",
+
+        "icons": {
+
+            "icon": ""
+
+        },
+
+        "deviceTypes": {
+
+            "desktop": true,
+
+            "tablet": true,
+
+            "phone": true
+
+        }
+
+    },
+
+    "sap.ui5": {
+
+        "flexEnabled": false,
+
+        "rootView": {
+
+            "viewName": "Learning.view.App",
+
+            "type": "XML",
+
+            "async": true,
+
+            "id": "Main"
+
+        },
+
+        "dependencies": {
+
+            "minUI5Version": "1.65.6",
+
+            "libs": {
+
+                "sap.m": {}
+
+            }
+
+        },
+
+        "contentDensities": {
+
+            "compact": true,
+
+            "cozy": true
+
+        },
+
+        "models": {
+
+            "i18n": {
+
+                "type": "sap.ui.model.resource.ResourceModel",
+
+                "settings": {
+
+                    "bundleName": "Routing.i18n.i18n"
+
+                }
+
+            }
+
+        },
+
+        "resources": {
+
+            "css": [{
+
+                "uri": "css/style.css"
+
+            }]
+
+        },
+
+        "routing": {
+
+            "config": {
+
+                "routerClass": "sap.m.routing.Router",
+
+                "viewType": "XML",
+
+                "async": true,
+
+                "viewPath": "Learning.view",
+
+                "controlAggregation": "pages",
+
+                "controlId": "app",
+
+                "clearControlAggregation": false
+
+            },
+
+            "routes": [
+
+               
+                   {
+
+                    "name": "Production",
+
+                    "pattern": "Production",
+
+                    "target": ["TargetProduction"]
+
+                },
+                  {
+                    "name": "App",
+                    "pattern": "App",
+                    "target": [
+                        "TargetApp"
+                    ]
+                },
+
+                
+             
+            {
+
+                "name": "Oee",
+
+                "pattern": "Oee",
+
+                "target": ["TargetOee"]
+
+            },
+             {
+                    "name": "Downtime",
+                    "pattern": "Downtime",
+                    "target": [
+                        "TargetDowntime"
+                    ]
+                },
+              {
+                    "name": "SpeedLoss",
+                    "pattern": "SpeedLoss",
+                    "target": [
+                        "TargetSpeedLoss"
+                    ]
+                },
+                 {
+                    "name": "Manage",
+                    "pattern": "Manage",
+                    "target": [
+                        "TargetManage"
+                    ]
+                }
+
+
+
+            ],
+
+            "targets": {
+
+                "TargetHome": {
+
+                    "viewType": "XML",
+
+                    "transition": "slide",
+
+                    "clearControlAggregation": false,
+
+                    "viewId": "Home",
+
+                    "viewName": "Home"
+
+                },
+               
+
+                "TargetOee": {
+
+                    "viewType": "XML",
+
+                    "transition": "slide",
+
+                    "clearControlAggregation": false,
+
+                    "viewId": "Oee",
+
+                    "viewName": "Oee"
+
+                },
+
+
+               
+
+              
+                "TargetProduction":{
+                    "viewType": "XML",
+
+                    "transition": "slide",
+
+                    "clearControlAggregation": false,
+
+                    "viewId": "Production",
+
+                    "viewName": "Production"
+
+
+                },
+                 "TargetSpeedLoss": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "SpeedLoss",
+                    "viewName": "SpeedLoss"
+                },
+                 "TargetDowntime":{
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Downtime",
+                    "viewName": "Downtime"
+                },
+                 "TargetManage":{
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Manage",
+                    "viewName": "Manage"
+                }
+
+            }
+
+        }
+
+    }
+
+}
+

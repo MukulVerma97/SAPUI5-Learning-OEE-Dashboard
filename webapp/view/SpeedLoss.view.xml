@@ -1,0 +1,120 @@
+<mvc:View controllerName="Learning.controller.SpeedLoss" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc">
+    <Page showHeader="true">
+        <headerContent>
+            <Button icon="sap-icon://media-reverse" type="Transparent" press="onPressNavButton" />
+            <Button icon="sap-icon://home" type="Transparent" press=".onicount" />
+            <ToolbarSpacer />
+            <Text text=" SAP Report Speed Loss" class="title" />
+            <ToolbarSpacer />
+        </headerContent>
+
+        <VBox />
+        <Panel class="KPI" height="35%">
+            <l:Splitter>
+                <VBox>
+                    <Text text="10000007097-0050" class="in" />
+                    <Text text="METRIC LINE PACKAGING" class="in" />
+                    <VBox>
+                        <Text text="" />
+                    </VBox>
+                    <Text text="10001726" class="in" />
+                    <Text text="REGENT TILE FARMHOUSE RED" class="in" />
+                    <Text text="Production Version : 001" class="in" />
+                    <Text text="Crew Size : 2.00" class="in" />
+                    <Text text="Started at : Jan21, 2022, 1:50:00PM" class="in" />
+                    <layoutData>
+                        <l:SplitterLayoutData size="70%" resizable="false" />
+                    </layoutData>
+                </VBox>
+                <VBox>
+                    <Text text="Remaining: 16,080,00" class="in" />
+                    <VBox>
+                        <Text text="" />
+                    </VBox>
+                    <Text text="Active (Machine)" class="in" />
+                    <Text text="Total Planned : 16,300,00 PC" class="in" />
+                    <Text text="Total Production/Total Scrap : 220.00 PC/10.00 PC" class="in" />
+                    <Text text="Produced in Current Shift : 0.00 PC" class="in" />
+                    <Text text="Standard Rate : 31,015,00 PC/4.04 h" class="in" />
+                    <layoutData>
+                        <l:SplitterLayoutData size="auto" />
+                    </layoutData>
+                </VBox>
+            </l:Splitter>
+        </Panel>
+
+        <content>
+            <Table items="{/tom/}" id="tableId1" growing="true" growingThreshold="2" inset="true" noDataText="No data Found" sticky="ColumnHeaders" class="table1">
+                <columns>
+                    <Column hAlign="Center">
+                        <Label text="Loading Time" design="Bold" />
+                    </Column>
+
+                    <Column hAlign="Center">
+                        <Label text="Unscheduled Downtime" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Target Quantity" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Reported Quantity" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Reported Speed Loss" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Open Speed Loss" design="Bold" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{Loading Time}" />
+                            <Text text="{Unscheduled Downtime}" />
+                            <Text text="{Target Quantity}" />
+                            <Text text="{Reported Quantity}" />
+                            <Text text="{Reported Speed Loss}" />
+                            <Text text="{Open Speed Loss}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <Panel class="body1">
+            <Text text="Reported Speed Loss" class="inner1" />
+        </Panel>
+        <content>
+            <Table items="{/data/}" id="tableId2" growing="true" growingThreshold="2" inset="true" noDataText="No data " sticky="ColumnHeaders" class="sapUiContentPadding">
+                <columns>
+                    <Column hAlign="Center">
+                        <Label text="Speed Loss" design="Bold" />
+                    </Column>
+
+                    <Column hAlign="Center">
+                        <Label text="Reported by" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Reason Code" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Comments" design="Bold" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Root Cause Machine" design="Bold" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{Speed Loss}" />
+                            <Text text="{Reported by}" />
+                            <Text text="{Reason Code}" />
+                            <Text text="{Comments}" />
+                            <Text text="{Root cause machine}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,47 @@
+<core:FragmentDefinition controllerName="Learning.controller.Downtime" xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog title="Report New" id="onDialog">
+        <Table id="re" inset="false" showSeparators="Inner" items="{/okay/}">
+            <columns>
+                <Column>
+                    <Text text="Work Unit" />
+                </Column>
+                <Column>
+                    <Text text="Start Time" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="End Time" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Duration" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Type" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Reason Code" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Notification" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Details" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{Work Unit}" />
+                        <Text text="{Start Time}" />
+                        <Text text="{End Time}" />
+                        <Text text="{Duration}" />
+                        <Text text="{Type}" />
+                        <Text text="{Reason Code}" />
+                        <Text text="{Notification}" />
+                        <Text text="{Details}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <Button icon="sap-icon://sys-cancel-2" press=".onClose" />
+    </Dialog>
+</core:FragmentDefinition>

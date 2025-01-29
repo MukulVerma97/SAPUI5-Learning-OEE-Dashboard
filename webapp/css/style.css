@@ -1,0 +1,104 @@
+.reset {}
+
+.sapMBtn.reset {
+    /* background-color: aqua; */
+}
+
+.sapMBtnInner.sapMBtnText {}
+
+.formTitle {
+    color: black;
+    text-align: center;
+    align-content: center;
+    font-weight: bolder;
+}
+
+.formHead {
+    color: black;
+    padding: 2rem;
+
+}
+
+.formPage {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(124, 168, 175, 1) 100%, rgba(0, 212, 255, 1) 100%);
+    box-sizing: border-box;
+}
+
+
+.table {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(124, 168, 175, 1) 100%, rgba(0, 212, 255, 1) 100%);
+}
+
+.pad {
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    color: white;
+}
+
+
+
+.shopPage {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(124, 168, 175, 1) 100%, rgba(0, 212, 255, 1) 100%);
+}
+
+.sapMBtn.goodMorning {
+    margin-left: 10rem;
+    padding-left: 20%;
+
+}
+
+.sapMListTbl.Row {}
+
+.Oee {
+    background-color: rgb(171, 219, 227);
+}
+
+.area {}
+
+.Bmi {
+    background-color: rgb(37, 150, 190);
+}
+
+.content1 {
+    font-weight: bold;
+    color: black;
+}
+
+.active {
+    color: green;
+    font-weight: bold;
+
+}
+
+.Vbox1 {
+    margin: 1rem;
+    border: 1rem;
+    border-color: black;
+    background-color: whitesmoke;
+}
+
+.sapMInputBase.sapMTextArea .sapMTextAreaInner {
+    line-height: 1.4;
+    padding: 0.625rem 0.75rem;
+    background-color: red;
+    -webkit-overflow-scrolling: touch;
+}
+
+.untagged {
+    background-color: orange;
+    height: 10%;
+}
+
+.kp {
+
+
+    align-items: center;
+}
+.ninja{
+    color: black;
+    font-size: medium;
+    font-weight: 600;
+}
