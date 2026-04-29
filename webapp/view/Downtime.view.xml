@@ -1,23 +1,25 @@
-<mvc:View controllerName="Learning.controller.Downtime" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:m="sap.m" xmlns:layout="sap.ui.layout">
-    <Page>
+<mvc:View controllerName="Learning.controller.Downtime" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core">
+    <Page title="Manage Downtime" showNavButton="true" navButtonPress="onPressNavButton" class="sapUiContentPadding oeePage">
+        <headerContent>
+            <Button icon="sap-icon://home" type="Transparent" press="onPressNavButton" tooltip="Back to OEE" />
+        </headerContent>
         <content>
-            <IconTabBar select="onSelect">
+            <IconTabBar select="onSelect" class="sapUiSmallMarginBottom">
                 <items>
-                    <IconTabSeparator />
-                    <IconTabFilter icon="sap-icon://along-stacked-chart" iconColor="Positive" text="Minor Downtime" key="minor" />
-                    <IconTabFilter icon="sap-icon://machine" iconColor="Critical" text="ALL Downtime" key="all" />
-                    <IconTabFilter icon="sap-icon://quality-issue" iconColor="Negative" text="Line Down" key="line" />
-                    <IconTabFilter icon="sap-icon://receipt" iconColor="Negative" text="Shared downtime" key="shared" />
-                    <IconTabFilter icon="sap-icon://accelerated" iconColor="Positive" text="Shifts Break" key="shift" />
-                    <IconTabFilter icon="sap-icon://quality-issue" iconColor="Negative" text="Flow Time" key="flow" />
+                    <IconTabFilter icon="sap-icon://along-stacked-chart" iconColor="Positive" text="Minor Downtime" key="minor" count="1" />
+                    <IconTabFilter icon="sap-icon://machine" iconColor="Critical" text="ALL Downtime" key="all" count="1" />
+                    <IconTabFilter icon="sap-icon://quality-issue" iconColor="Negative" text="Line Down" key="line" count="1" />
+                    <IconTabFilter icon="sap-icon://receipt" iconColor="Negative" text="Shared Downtime" key="shared" count="1" />
+                    <IconTabFilter icon="sap-icon://accelerated" iconColor="Positive" text="Shifts Break" key="shift" count="1" />
+                    <IconTabFilter icon="sap-icon://quality-issue" iconColor="Negative" text="Flow Time" key="flow" count="1" />
                 </items>
             </IconTabBar>
 
-            <Table id="om" inset="false" showSeparators="Inner" items="{/okay/}">
+            <Table id="om" inset="false" showSeparators="Inner" items="{/okay/}" noDataText="No downtime records found" class="sapUiSmallMarginBottom">
                 <infoToolbar>
                     <OverflowToolbar>
                         <CheckBox text="Open Work" />
-                        <CheckBox text="untagged" />
+                        <CheckBox text="Untagged" />
                     </OverflowToolbar>
                 </infoToolbar>
                 <columns>
@@ -54,7 +56,7 @@
                             <Text text="{End Time}" />
                             <Text text="{Duration}" />
                             <Text text="{Type}" />
-                            <Text text="{Reason Code}" />
+                            <ObjectStatus text="{Reason Code}" state="Warning" icon="sap-icon://alert" />
                             <Text text="{Notification}" />
                             <Text text="{Details}" />
                         </cells>
@@ -64,20 +66,14 @@
         </content>
         <footer>
             <OverflowToolbar>
-                <HBox>
-                    <Button icon="sap-icon://add" text="ADD Notification" class="pad" />
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://split" text="Split" class="pad" />
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://arrow-top" text="Report Up" class="pad" />
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://error" text="Delete" class="pad" />
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://edit" text="Edit" press="onPrinting" class="pad" />
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://add" text="Report New" class="pad" press="onReport" />
-                    <ToolbarSpacer />
-                </HBox>
+                <ToolbarSpacer />
+                <Button icon="sap-icon://add" text="ADD Notification" type="Transparent" class="sapUiSmallMarginEnd" />
+                <Button icon="sap-icon://split" text="Split" type="Transparent" class="sapUiSmallMarginEnd" />
+                <Button icon="sap-icon://arrow-top" text="Report Up" type="Transparent" class="sapUiSmallMarginEnd" />
+                <Button icon="sap-icon://delete" text="Delete" type="Reject" class="sapUiSmallMarginEnd" />
+                <Button icon="sap-icon://edit" text="Edit" type="Transparent" class="sapUiSmallMarginEnd" />
+                <Button icon="sap-icon://add" text="Report New" type="Emphasized" press="onReport" />
+                <ToolbarSpacer />
             </OverflowToolbar>
         </footer>
     </Page>

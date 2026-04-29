@@ -2,20 +2,29 @@
     <tnt:ToolPage id="mainPage" class="navigate">
         <tnt:header>
             <tnt:ToolHeader>
-                <Button icon="sap-icon://menu" press="openSide" />
+                <Button icon="sap-icon://menu2" press="openSide" tooltip="Toggle Navigation" type="Transparent" />
 
                 <ToolbarSpacer />
+
+                <Title text="OEE Manufacturing Dashboard" class="appTitle" />
+
                 <ToolbarSpacer />
 
-                <Title text="Nauruto Hidden Village" />
-                <ToolbarSpacer />
-                <Button icon="sap-icon://sys-help" press="onHelp" />
+                <Text text="" id="showTime" class="clockText" />
 
-                <MenuButton text="Hi User" type="Transparent" icon="sap-icon://employee-lookup">
+                <ToolbarSpacer />
+
+                <Switch id="themeSwitch" state="false" change="onThemeSwitch" customTextOn="Dark" customTextOff="Light" tooltip="Toggle Dark / Light Theme" />
+
+                <Button icon="sap-icon://sys-help-2" press="onHelp" tooltip="Help" type="Transparent" />
+
+                <MenuButton text="Hi User" type="Transparent" icon="sap-icon://person-placeholder">
                     <layoutData>
                         <OverflowToolbarLayoutData priority="NeverOverflow" />
                     </layoutData>
                     <Menu>
+                        <MenuItem text="My Profile" icon="sap-icon://account" />
+                        <MenuItem text="Settings" icon="sap-icon://action-settings" />
                         <MenuItem text="Log Out" icon="sap-icon://log" />
                     </Menu>
                 </MenuButton>
@@ -25,24 +34,16 @@
         <tnt:sideContent>
             <tnt:SideNavigation itemSelect="onItemSelect" id="sideNavigate" class="navigate" expanded="true">
                 <tnt:NavigationList id="navigationList" class="navigate">
-                    <tnt:NavigationListItem text="OEE Dashboard" id="Oee" icon="sap-icon://cart-full" key="Oee" />
-                    <tnt:NavigationListItem text="Manage Order" icon="sap-icon://home" key="Manage" />
-                    <tnt:NavigationListItem text="Report Production" id="production" icon="sap-icon://accelerated" key="Production" />
-                    <tnt:NavigationListItem text="Manage Downtime" id="downtime" icon="sap-icon://employee" key="Downtime" />
-                    <tnt:NavigationListItem text="Report Speed Loss" id="report" icon="sap-icon://cart-full" key="SpeedLoss" />
+                    <tnt:NavigationListItem text="OEE Dashboard" id="navOee" icon="sap-icon://bar-chart" key="Oee" />
+                    <tnt:NavigationListItem text="Manage Order" id="navManage" icon="sap-icon://sales-order" key="Manage" />
+                    <tnt:NavigationListItem text="Report Production" id="navProduction" icon="sap-icon://factory" key="Production" />
+                    <tnt:NavigationListItem text="Manage Downtime" id="navDowntime" icon="sap-icon://wrench" key="Downtime" />
+                    <tnt:NavigationListItem text="Report Speed Loss" id="navSpeedLoss" icon="sap-icon://line-chart-time-axis" key="SpeedLoss" />
                 </tnt:NavigationList>
             </tnt:SideNavigation>
         </tnt:sideContent>
         <tnt:mainContents>
-            <App id="app">
-                <mvc:XMLView viewName="Learning.view.Oee" />
-            </App>
-
-            <NavContainer />
+            <App id="app" />
         </tnt:mainContents>
     </tnt:ToolPage>
-
-    <!-- <mvc:XMLView viewName="Learning.view.Tree" /> -->
-
-    <!-- <mvc:XMLView viewName="Learning.view.Header" /> -->
 </mvc:View>

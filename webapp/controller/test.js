@@ -1,11 +1,14 @@
-const num = 24;
 
-const num2 = new Number(32.434343);
 
-//console.log(num2.toString().length);
 
-console.log(num2.toPrecision(4));
+var movies = ["Thor", "Marvel", "Iron Man", "Venom"];
 
-const num3 = "0000001444412";
+// Using forEach to print movies
+movies.forEach(function(value) {
+  console.log(value);
+});
 
-console.log(num3.length);
+// Using a for loop to print movies
+for (let i = 0; i < movies.length; i++) {
+  console.log(movies[i]);
+}

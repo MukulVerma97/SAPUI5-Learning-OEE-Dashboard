@@ -3,386 +3,257 @@ sap.ui.define(
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
-
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/core/Fragment",
-    "sap/ui/core/Core",
+    "sap/ui/model/json/JSONModel"
   ],
-  function (Controller, MessageToast, Filter, JSONModel, Fragment) {
+  function (Controller, MessageToast, Filter, JSONModel) {
     "use strict";
-    let fragButton1Text = "";
 
     return Controller.extend("Learning.controller.Oee", {
       onInit: function () {
-        // FOR TIMER
+        // Set village model for value help fragments
+        this._oVillageModel = new JSONModel("module/village.json");
+        this.getView().setModel(this._oVillageModel);
 
-        this.setTime();
-
-        //-------------------------FOR header AND BUTTON FRAGMENT ------------------------------------
-        this.oModel = new JSONModel("module/village.json");
-        const s1 = new JSONModel("module/village.json");
-        var oView = this.getView();
-        oView.setModel(this.oModel);
-        this.oSF = oView.byId("searchField");
-
-        /*--------------------- for vix Frame---------------------------------- */
-
-        var jsonData = new sap.ui.model.json.JSONModel("module/Data.json");
+        // Set chart data model
+        var oChartModel = new JSONModel("module/Data.json");
         var oVizFrame = this.getView().byId("idVizFrame");
-        oVizFrame.setModel(jsonData);
-        //---------------------FOR DISPLAYING DATE -----------------------------------------------
-        var today = new Date();
-
-        var dd = today.getDate();
-
-        var mm = today.getMonth() + 1;
-
-        var yyyy = today.getFullYear();
-
-        if (dd < 10) {
-          dd = "0" + dd;
-        }
-        if (mm < 10) {
-          mm = "0" + mm;
-        }
-        today = yyyy + "-" + mm + "-" + dd;
-
-        var oDate = this.getView().byId("date");
-        // console.log(today);
-
-        // oDate.setText(today);
-
-        //  oDate.setText(today);
-        //  oController = this;
-      },
-
-      onNavigateToHome: function () {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Home");
-      },
-
-      onPrinting: function (oEvent) {
-        if (this.popupVersionDetails == undefined) {
-          this.popupVersionDetails = sap.ui.xmlfragment(
-            "popoverVersionDetails",
-            "Learning.view.Printing",
-            this
-          );
-
-          this.getView().addDependent(this.popupVersionDetails);
+        if (oVizFrame) {
+          oVizFrame.setModel(oChartModel);
         }
 
-        this.popupVersionDetails.openBy(oEvent.getSource());
+        // Start clock
+        this._startClock();
+
+        // Track selected value across fragments
+        this._sSelectedValue = "";
       },
+
+      // =================== VALUE HELP DIALOGS ===================
 
       onFirst: function () {
-        const x1 = {
-          a: [
-            { b: "a1" },
-            { b: "a2" },
-            { b: "a2" },
-            { b: "a3" },
-            { b: "a4" },
-            { b: "a5" },
-          ],
-        };
-        const x2 = new JSONModel(x1);
-        // this.getView().byId('searchField1').setModel(x2);
-
-        const oModel = new JSONModel("module/village.json");
-        if (!this.pDialog) {
-          this.pDialog = this.loadFragment({
+        var oModel = new JSONModel("module/village.json");
+        if (!this._pDialog1) {
+          this._pDialog1 = this.loadFragment({
             name: "Learning.view.first",
-            id: "first",
+            id: "oeeFirst"
           });
         }
-        this.pDialog.then(function (oDialog) {
+        var that = this;
+        this._pDialog1.then(function (oDialog) {
           oDialog.setModel(oModel);
-          console.log(oDialog.getModel());
+          that._oDialog1 = oDialog;
           oDialog.open();
         });
       },
 
       onSecond: function () {
-        if (!this.qDialog) {
-          this.qDialog = this.loadFragment({
+        var oModel = new JSONModel("module/village.json");
+        if (!this._pDialog2) {
+          this._pDialog2 = this.loadFragment({
             name: "Learning.view.second",
+            id: "oeeSecond"
           });
         }
-        this.qDialog.then(function (oDialog) {
+        var that = this;
+        this._pDialog2.then(function (oDialog) {
+          oDialog.setModel(oModel);
+          that._oDialog2 = oDialog;
           oDialog.open();
         });
       },
 
       onThird: function () {
-        if (!this.rDialog) {
-          this.rDialog = this.loadFragment({
+        var oModel = new JSONModel("module/village.json");
+        if (!this._pDialog3) {
+          this._pDialog3 = this.loadFragment({
             name: "Learning.view.third",
+            id: "oeeThird"
           });
         }
-        this.rDialog.then(function (oDialog) {
+        var that = this;
+        this._pDialog3.then(function (oDialog) {
+          oDialog.setModel(oModel);
+          that._oDialog3 = oDialog;
           oDialog.open();
         });
       },
 
+      // =================== DIALOG CLOSE ===================
+
       onClose1: function () {
-        this.byId("onFirst").close();
+        if (this._oDialog1) { this._oDialog1.close(); }
       },
 
       onClose2: function () {
-        this.byId("onSecond").close();
+        if (this._oDialog2) { this._oDialog2.close(); }
       },
 
       onClose3: function () {
-        this.byId("onThird").close();
+        if (this._oDialog3) { this._oDialog3.close(); }
       },
 
-      onSearch2: function (event) {
-        var oItem = event.getParameter("suggestionItem");
+      // =================== SEARCH HANDLERS ===================
+
+      onSearch2: function (oEvent) {
+        var oItem = oEvent.getParameter("suggestionItem");
         if (oItem) {
-          MessageToast.show("Search for: " + oItem.getText());
-          this.byId("first--onFirst").close();
-          this.getView()
-            .byId("first")
-            .setText("Hokage--" + oItem.getText());
+          MessageToast.show("Selected: " + oItem.getText());
+          if (this._oDialog1) { this._oDialog1.close(); }
+          this.getView().byId("oeeFirst").setText("Hokage — " + oItem.getText());
         } else {
           MessageToast.show("Search is fired!");
         }
-        // console.log(event.getSource().getModel());
       },
 
-      onSearch3: function (event) {
-        var oItem = event.getParameter("suggestionItem");
+      onSearch3: function (oEvent) {
+        var oItem = oEvent.getParameter("suggestionItem");
         if (oItem) {
-          MessageToast.show("Search for: " + oItem.getText());
-          this.byId("onSecond").close();
-          this.getView()
-            .byId("second")
-            .setText("Raikage--" + oItem.getText());
+          MessageToast.show("Selected: " + oItem.getText());
+          if (this._oDialog2) { this._oDialog2.close(); }
+          this.getView().byId("oeeSecond").setText("Raikage — " + oItem.getText());
         } else {
           MessageToast.show("Search is fired!");
         }
-        // console.log(event.getSource().getModel());
       },
 
-      onSearch4: function (event) {
-        var oItem = event.getParameter("suggestionItem");
+      onSearch4: function (oEvent) {
+        var oItem = oEvent.getParameter("suggestionItem");
         if (oItem) {
-          MessageToast.show("Search for: " + oItem.getText());
-          this.byId("onThird").close();
-          this.getView()
-            .byId("third")
-            .setText("Kazekage--" + oItem.getText());
+          MessageToast.show("Selected: " + oItem.getText());
+          if (this._oDialog3) { this._oDialog3.close(); }
+          this.getView().byId("oeeThird").setText("Kazekage — " + oItem.getText());
         } else {
           MessageToast.show("Search is fired!");
         }
-        // console.log(event.getSource().getModel());
       },
 
-      setTime: function () {
-        setInterval(() => {
-          let date = new Date();
+      // =================== SUBMIT HANDLERS ===================
 
-          const time =
-            (date.getHours() < 12
-              ? date.getHours()
-              : "0" + date.getHours() - 12) +
-            ":" +
-            (date.getMinutes() >= 10
-              ? date.getMinutes()
-              : "0" + date.getMinutes()) +
-            ":" +
-            (date.getSeconds() >= 10
-              ? date.getSeconds()
-              : "0" + date.getSeconds()) +
-            (date.getHours() > 12 ? " PM" : " AM");
-
-          this.getView().byId("showTime").setText(time);
-        }, 1000);
-      },
-      onForm: function (e) {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Form");
-        this.byId("myPopover").focus();
-        this.byId("popover").close();
-      },
-      onShop: function () {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Shop");
-        this.byId("myPopover").focus();
-        this.byId("popover").close();
+      onSubmit1: function () {
+        if (this._oDialog1) { this._oDialog1.close(); }
+        if (this._sSelectedValue) {
+          this.getView().byId("oeeFirst").setText("Hokage — " + this._sSelectedValue);
+        }
       },
 
-      onUserDeatil: function (e) {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Table");
-        this.byId("myPopover").focus();
-        this.byId("popover").close();
+      onSubmit2: function () {
+        if (this._oDialog2) { this._oDialog2.close(); }
+        if (this._sSelectedValue) {
+          this.getView().byId("oeeSecond").setText("Raikage — " + this._sSelectedValue);
+        }
       },
-      onReport: function (e) {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Production");
+
+      onSubmit3: function () {
+        if (this._oDialog3) { this._oDialog3.close(); }
+        if (this._sSelectedValue) {
+          this.getView().byId("oeeThird").setText("Kazekage — " + this._sSelectedValue);
+        }
+      },
+
+      // =================== SELECTION CHANGE (DRY) ===================
+
+      _onSelectionChange: function (oEvent) {
+        var aContexts = oEvent.getSource().getSelectedContexts();
+        if (aContexts && aContexts.length > 0) {
+          var oData = aContexts[0].getObject();
+          this._sSelectedValue = oData.Name || "";
+        }
+      },
+
+      onSelectionChange1: function (oEvent) { this._onSelectionChange(oEvent); },
+      onSelectionChange2: function (oEvent) { this._onSelectionChange(oEvent); },
+      onSelectionChange3: function (oEvent) { this._onSelectionChange(oEvent); },
+
+      // =================== SUGGEST HANDLER (DRY) ===================
+
+      _onSuggest: function (oEvent) {
+        var sValue = oEvent.getParameter("suggestValue"),
+          aFilters = [];
+        if (sValue) {
+          aFilters = [
+            new Filter(
+              [
+                new Filter("ninjaId", function (sText) {
+                  return (sText || "").toUpperCase().indexOf(sValue.toUpperCase()) > -1;
+                }),
+                new Filter("Name", function (sDes) {
+                  return (sDes || "").toUpperCase().indexOf(sValue.toUpperCase()) > -1;
+                })
+              ],
+              false
+            )
+          ];
+        }
+        oEvent.getSource().getBinding("suggestionItems").filter(aFilters);
+        oEvent.getSource().suggest();
+      },
+
+      onSuggest1: function (oEvent) { this._onSuggest(oEvent); },
+      onSuggest2: function (oEvent) { this._onSuggest(oEvent); },
+      onSuggest3: function (oEvent) { this._onSuggest(oEvent); },
+
+      // =================== NAVIGATION ===================
+
+      onReport: function () {
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("Production");
       },
 
       onDowntime: function () {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Downtime");
-      },
-      onManage: function () {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("Manage");
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("Downtime");
       },
 
-      onSuggest1: function (event) {
-        var sValue = event.getParameter("suggestValue"),
-          aFilters = [];
-        if (sValue) {
-          aFilters = [
-            new Filter(
-              [
-                new Filter("ninjaId", function (sText) {
-                  return (
-                    (sText || "").toUpperCase().indexOf(sValue.toUpperCase()) >
-                    -1
-                  );
-                }),
-                new Filter("Name", function (sDes) {
-                  return (
-                    (sDes || "").toUpperCase().indexOf(sValue.toUpperCase()) >
-                    -1
-                  );
-                }),
-              ],
-              false
-            ),
-          ];
-        }
-
-        event.getSource().getBinding("suggestionItems").filter(aFilters);
-        event.getSource().suggest();
-      },
-
-      onSuggest2: function (event) {
-        var sValue = event.getParameter("suggestValue"),
-          aFilters = [];
-        if (sValue) {
-          aFilters = [
-            new Filter(
-              [
-                new Filter("ninjaId", function (sText) {
-                  return (
-                    (sText || "").toUpperCase().indexOf(sValue.toUpperCase()) >
-                    -1
-                  );
-                }),
-                new Filter("Name", function (sDes) {
-                  return (
-                    (sDes || "").toUpperCase().indexOf(sValue.toUpperCase()) >
-                    -1
-                  );
-                }),
-              ],
-              false
-            ),
-          ];
-        }
-
-        event.getSource().getBinding("suggestionItems").filter(aFilters);
-        event.getSource().suggest();
-      },
-
-      onSuggest3: function (event) {
-        var sValue = event.getParameter("suggestValue"),
-          aFilters = [];
-        if (sValue) {
-          aFilters = [
-            new Filter(
-              [
-                new Filter("ninjaId", function (sText) {
-                  return (
-                    (sText || "").toUpperCase().indexOf(sValue.toUpperCase()) >
-                    -1
-                  );
-                }),
-                new Filter("Name", function (sDes) {
-                  return (
-                    (sDes || "").toUpperCase().indexOf(sValue.toUpperCase()) >
-                    -1
-                  );
-                }),
-              ],
-              false
-            ),
-          ];
-        }
-
-        event.getSource().getBinding("suggestionItems").filter(aFilters);
-        event.getSource().suggest();
-      },
       onSpeedLoss: function () {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("SpeedLoss");
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("SpeedLoss");
       },
-      onSubmit1: function (event) {
-        this.getView().setModel(this.oModel);
 
-        this.byId("first--onFirst").close();
-        if (fragButton1Text !== "") {
-          this.getView()
-            .byId("first")
-            .setText("Hokage --" + fragButton1Text);
-        }
+      onManage: function () {
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("Manage");
       },
-      onSubmit2: function (event) {
-        this.getView().setModel(this.oModel);
 
-        this.byId("onSecond").close();
-        if (fragButton1Text !== "") {
-          this.getView()
-            .byId("second")
-            .setText("Raikage --" + fragButton1Text);
-        }
-      },
-      onSubmit3: function (event) {
-        this.getView().setModel(this.oModel);
+      // =================== PRINTING POPOVER ===================
 
-        this.byId("onThird").close();
-        if (fragButton1Text !== "") {
-          this.getView()
-            .byId("third")
-            .setText("Kazekage--" + fragButton1Text);
+      onPrinting: function (oEvent) {
+        if (!this._oPrintPopover) {
+          this._oPrintPopover = sap.ui.xmlfragment(
+            "oeePrint",
+            "Learning.view.Printing",
+            this
+          );
+          this.getView().addDependent(this._oPrintPopover);
         }
+        this._oPrintPopover.openBy(oEvent.getSource());
       },
-      onSelectionChange1: function (e) {
-        console.log(e.getSource().getSelectedContexts()[0].sPath.split("/")[2]);
-        let m = e.getSource().getModel().oData.ninja;
-        m[parseInt(e.getSource().getSelectedContexts()[0].sPath.split("/")[2])]
-          .Name;
-        fragButton1Text =
-          m[
-            parseInt(e.getSource().getSelectedContexts()[0].sPath.split("/")[2])
-          ].Name;
+
+      onProduction: function () {
+        if (this._oPrintPopover) { this._oPrintPopover.close(); }
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("Production");
       },
-      onSelectionChange2: function (e) {
-        console.log(e.getSource().getSelectedContexts()[0].sPath.split("/")[2]);
-        let m = e.getSource().getModel().oData.ninja;
-        m[parseInt(e.getSource().getSelectedContexts()[0].sPath.split("/")[2])]
-          .Name;
-        fragButton1Text =
-          m[
-            parseInt(e.getSource().getSelectedContexts()[0].sPath.split("/")[2])
-          ].Name;
+
+      onSpeed: function () {
+        if (this._oPrintPopover) { this._oPrintPopover.close(); }
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("SpeedLoss");
       },
-      onSelectionChange3: function (e) {
-        console.log(e.getSource().getSelectedContexts()[0].sPath.split("/")[2]);
-        let m = e.getSource().getModel().oData.ninja;
-        m[parseInt(e.getSource().getSelectedContexts()[0].sPath.split("/")[2])]
-          .Name;
-        fragButton1Text =
-          m[
-            parseInt(e.getSource().getSelectedContexts()[0].sPath.split("/")[2])
-          ].Name;
+
+      // =================== CLOCK ===================
+
+      _startClock: function () {
+        var that = this;
+        this._clockInterval = setInterval(function () {
+          var d = new Date();
+          var h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+          var period = h >= 12 ? "PM" : "AM";
+          var dh = h % 12 || 12;
+          var sTime = (dh < 10 ? "0" : "") + dh + ":" +
+                      (m < 10 ? "0" : "") + m + ":" +
+                      (s < 10 ? "0" : "") + s + " " + period;
+          var oText = that.getView().byId("oeeShowTime");
+          if (oText) { oText.setText(sTime); }
+        }, 1000);
       },
+
+      onExit: function () {
+        if (this._clockInterval) { clearInterval(this._clockInterval); }
+      }
     });
   }
 );

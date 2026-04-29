@@ -75,7 +75,13 @@
 
             "libs": {
 
-                "sap.m": {}
+                "sap.m": {},
+                "sap.tnt": {},
+                "sap.ui.layout": {},
+                "sap.ui.table": {},
+                "sap.viz": {},
+                "sap.f": {},
+                "sap.ui.core": {}
 
             }
 
@@ -97,7 +103,7 @@
 
                 "settings": {
 
-                    "bundleName": "Routing.i18n.i18n"
+                    "bundleName": "Learning.i18n.i18n"
 
                 }
 
@@ -137,8 +143,13 @@
 
             "routes": [
 
-               
-                   {
+                {
+                    "name": "Home",
+                    "pattern": "",
+                    "target": ["TargetOee"]
+                },
+
+                {
 
                     "name": "Production",
 
@@ -147,16 +158,14 @@
                     "target": ["TargetProduction"]
 
                 },
-                  {
+                {
                     "name": "App",
                     "pattern": "App",
                     "target": [
-                        "TargetApp"
+                        "TargetOee"
                     ]
                 },
 
-                
-             
             {
 
                 "name": "Oee",
@@ -269,4 +278,3 @@
     }
 
 }
-

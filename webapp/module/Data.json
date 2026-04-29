@@ -1,27 +1,32 @@
 {
-
-    "Reports": [{
-
-   
-
-    "Time": "12 hours",
-
-    "Items":"",
-
-   
-
-    "Available": 200,
-
-    "Unschedule": 100,
-
-    "Schedule":100,
-
-    "Shift Basic":50
-
-    }
-
-   
-
+    "Reports": [
+        {
+            "Items": "Shift 1 (6AM-2PM)",
+            "Available": 480,
+            "Unschedule": 30,
+            "Schedule": 420,
+            "Shift Basic": 450
+        },
+        {
+            "Items": "Shift 2 (2PM-10PM)",
+            "Available": 480,
+            "Unschedule": 45,
+            "Schedule": 390,
+            "Shift Basic": 435
+        },
+        {
+            "Items": "Shift 3 (10PM-6AM)",
+            "Available": 480,
+            "Unschedule": 60,
+            "Schedule": 360,
+            "Shift Basic": 420
+        },
+        {
+            "Items": "Weekend Shift",
+            "Available": 240,
+            "Unschedule": 20,
+            "Schedule": 200,
+            "Shift Basic": 220
+        }
     ]
-
-    }
+}

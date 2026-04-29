@@ -1,0 +1,94 @@
+{
+  "Rowsets": {
+    "Rowset": [
+      {
+        "Row": [
+          {
+            "Ninja_Id": "NK-001",
+            "Ninja_Name": "Naruto Uzumaki",
+            "Ninja_house": "uzumaki",
+            "Signatur_Jutsu": "Rasengan / Shadow Clone",
+            "sensei": "Kakashi Hatake"
+          },
+          {
+            "Ninja_Id": "NK-002",
+            "Ninja_Name": "Sasuke Uchiha",
+            "Ninja_house": "uchiha",
+            "Signatur_Jutsu": "Chidori / Amaterasu",
+            "sensei": "Kakashi Hatake"
+          },
+          {
+            "Ninja_Id": "NK-003",
+            "Ninja_Name": "Sakura Haruno",
+            "Ninja_house": "haruno",
+            "Signatur_Jutsu": "Cherry Blossom Impact",
+            "sensei": "Tsunade"
+          },
+          {
+            "Ninja_Id": "NK-004",
+            "Ninja_Name": "Kakashi Hatake",
+            "Ninja_house": "hatake",
+            "Signatur_Jutsu": "Lightning Blade / Kamui",
+            "sensei": "Minato Namikaze"
+          },
+          {
+            "Ninja_Id": "NK-005",
+            "Ninja_Name": "Itachi Uchiha",
+            "Ninja_house": "uchiha",
+            "Signatur_Jutsu": "Tsukuyomi / Susanoo",
+            "sensei": "Fugaku Uchiha"
+          },
+          {
+            "Ninja_Id": "NK-006",
+            "Ninja_Name": "Hinata Hyuga",
+            "Ninja_house": "hyuga",
+            "Signatur_Jutsu": "Gentle Fist / Twin Lion Fists",
+            "sensei": "Kurenai Yuhi"
+          },
+          {
+            "Ninja_Id": "NK-007",
+            "Ninja_Name": "Shikamaru Nara",
+            "Ninja_house": "nara",
+            "Signatur_Jutsu": "Shadow Possession Jutsu",
+            "sensei": "Asuma Sarutobi"
+          },
+          {
+            "Ninja_Id": "NK-008",
+            "Ninja_Name": "Gaara",
+            "Ninja_house": "sand",
+            "Signatur_Jutsu": "Sand Coffin / Sand Burial",
+            "sensei": "Baki"
+          },
+          {
+            "Ninja_Id": "NK-009",
+            "Ninja_Name": "Minato Namikaze",
+            "Ninja_house": "uzumaki",
+            "Signatur_Jutsu": "Flying Thunder God",
+            "sensei": "Jiraiya"
+          },
+          {
+            "Ninja_Id": "NK-010",
+            "Ninja_Name": "Obito Uchiha",
+            "Ninja_house": "uchiha",
+            "Signatur_Jutsu": "Kamui",
+            "sensei": "Minato Namikaze"
+          },
+          {
+            "Ninja_Id": "NK-011",
+            "Ninja_Name": "Rock Lee",
+            "Ninja_house": "lee",
+            "Signatur_Jutsu": "Eight Inner Gates",
+            "sensei": "Might Guy"
+          },
+          {
+            "Ninja_Id": "NK-012",
+            "Ninja_Name": "Boruto Uzumaki",
+            "Ninja_house": "uzumaki",
+            "Signatur_Jutsu": "Vanishing Rasengan",
+            "sensei": "Sasuke Uchiha"
+          }
+        ]
+      }
+    ]
+  }
+}

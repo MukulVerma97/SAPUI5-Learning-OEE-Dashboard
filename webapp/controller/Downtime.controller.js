@@ -1,60 +1,86 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel"],
-  function (Controller, JSONModel) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast"
+  ],
+  function (Controller, JSONModel, MessageToast) {
     "use strict";
     return Controller.extend("Learning.controller.Downtime", {
-      onInit: async function (e) {
-        var oModel = await (await fetch("module/downtime.json")).json();
 
-        const y = oModel.minor;
-        var oModel1 = new JSONModel(y);
+      onInit: function () {
+        // Load all downtime data upfront and cache it
+        this._oDowntimeData = null;
+        var that = this;
 
-        this.getView().byId("om").setModel(oModel1);
+        var oModel = new JSONModel();
+        oModel.loadData("module/downtime.json", null, true);
+        oModel.attachRequestCompleted(function () {
+          that._oDowntimeData = oModel.getData();
+          // Set initial tab data (minor)
+          that._setTabData("minor");
+        });
+        oModel.attachRequestFailed(function () {
+          MessageToast.show("Error loading downtime data");
+        });
+      },
+
+      _setTabData: function (sKey) {
+        if (!this._oDowntimeData) { return; }
+
+        var oTabData = this._oDowntimeData[sKey];
+        if (oTabData) {
+          var oTabModel = new JSONModel(oTabData);
+          this.getView().byId("om").setModel(oTabModel);
+        } else {
+          // No data for this key, set empty model
+          this.getView().byId("om").setModel(new JSONModel({ okay: [] }));
+          MessageToast.show("No data available for: " + sKey);
+        }
       },
 
       onPressNavButton: function () {
-        let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("App");
+        sap.ui.core.UIComponent.getRouterFor(this).navTo("Oee");
       },
-      onSelect: async function (e) {
-        let x1 = new JSONModel("module/downtime.json");
-        this.getView().setModel(x1);
-        let sKey = e.getParameter("key");
-        // console.log(sKey);
+
+      onSelect: function (oEvent) {
+        var sKey = oEvent.getParameter("key");
+        if (!sKey) { return; }
         sKey = sKey.trim();
-
-        let m = await (await fetch("module/downtime.json")).json();
-        // console.log(m);
-
-        //  console.log(m[sKey]);
-        let r = m[sKey];
-
-        let x = new JSONModel(r);
-        this.getView().byId("om").setModel(x);
-        //  console.log(this.getView().byId('om').getModel());
+        this._setTabData(sKey);
       },
+
       onReport: function () {
-        const oModel = new JSONModel("module/downtime.json");
-        if (!this.pDialog) {
-          this.pDialog = this.loadFragment({
+        var that = this;
+
+        if (!this._pReportDialog) {
+          this._pReportDialog = this.loadFragment({
             name: "Learning.view.report",
+            id: "dtReport"
           });
         }
-        {
-          var oModel1 = new JSONModel("module/downtime.json");
 
-          const y = this.getView().byId("re").setModel(oModel1);
-          var oModel1 = new JSONModel(y);
-          this.getView().byId("om").getModel(oModel1);
-        }
-        this.pDialog.then(function (oDialog) {
-          oDialog.setModel(oModel);
+        this._pReportDialog.then(function (oDialog) {
+          // Set the cached downtime data as the dialog model
+          if (that._oDowntimeData) {
+            var oDialogModel = new JSONModel(that._oDowntimeData);
+            oDialog.setModel(oDialogModel);
+          } else {
+            // Fallback: load fresh data
+            var oFreshModel = new JSONModel();
+            oFreshModel.loadData("module/downtime.json", null, false);
+            oDialog.setModel(oFreshModel);
+          }
+          that._oReportDialog = oDialog;
           oDialog.open();
         });
       },
+
       onClose: function () {
-        this.byId("onDialog").close();
-      },
+        if (this._oReportDialog) {
+          this._oReportDialog.close();
+        }
+      }
     });
   }
 );

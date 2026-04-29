@@ -1,41 +1,37 @@
-<mvc:View controllerName="Learning.controller.SpeedLoss" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc">
-    <Page showHeader="true">
+<mvc:View controllerName="Learning.controller.SpeedLoss" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+    <Page showHeader="true" title="Report Speed Loss" showNavButton="true" navButtonPress="onPressNavButton" class="sapUiContentPadding oeePage">
         <headerContent>
-            <Button icon="sap-icon://media-reverse" type="Transparent" press="onPressNavButton" />
-            <Button icon="sap-icon://home" type="Transparent" press=".onicount" />
+            <Button icon="sap-icon://home" type="Transparent" press="onPressNavButton" tooltip="Back to Production" />
             <ToolbarSpacer />
-            <Text text=" SAP Report Speed Loss" class="title" />
+            <Title text="SAP Report Speed Loss" class="title" />
             <ToolbarSpacer />
         </headerContent>
 
-        <VBox />
-        <Panel class="KPI" height="35%">
+        <!-- Current Shift Order -->
+        <Panel headerText="Current Shift Order" class="sapUiSmallMarginBottom oeePanel">
             <l:Splitter>
-                <VBox>
-                    <Text text="10000007097-0050" class="in" />
-                    <Text text="METRIC LINE PACKAGING" class="in" />
-                    <VBox>
-                        <Text text="" />
-                    </VBox>
-                    <Text text="10001726" class="in" />
-                    <Text text="REGENT TILE FARMHOUSE RED" class="in" />
-                    <Text text="Production Version : 001" class="in" />
-                    <Text text="Crew Size : 2.00" class="in" />
-                    <Text text="Started at : Jan21, 2022, 1:50:00PM" class="in" />
+                <VBox class="sapUiSmallMarginBegin">
+                    <Title text="10000007097-0050" level="H3" class="sapUiSmallMarginBottom" />
+                    <Text text="METRIC LINE PACKAGING" class="content1" />
+                    <VBox height="0.5rem" />
+                    <Text text="Material: 10001726" class="content1" />
+                    <Text text="REGENT TILE FARMHOUSE RED" class="content1" />
+                    <Text text="Production Version: 001" class="content1" />
+                    <Text text="Crew Size: 2.00" class="content1" />
+                    <Text text="Started at: Jan 21, 2022, 1:50:00 PM" class="content1" />
                     <layoutData>
                         <l:SplitterLayoutData size="70%" resizable="false" />
                     </layoutData>
                 </VBox>
-                <VBox>
-                    <Text text="Remaining: 16,080,00" class="in" />
-                    <VBox>
-                        <Text text="" />
-                    </VBox>
-                    <Text text="Active (Machine)" class="in" />
-                    <Text text="Total Planned : 16,300,00 PC" class="in" />
-                    <Text text="Total Production/Total Scrap : 220.00 PC/10.00 PC" class="in" />
-                    <Text text="Produced in Current Shift : 0.00 PC" class="in" />
-                    <Text text="Standard Rate : 31,015,00 PC/4.04 h" class="in" />
+                <VBox class="sapUiSmallMarginBegin">
+                    <ObjectStatus text="Remaining: 16,080.00 PC" state="Warning" icon="sap-icon://pending" />
+                    <VBox height="0.5rem" />
+                    <ObjectStatus text="Active (Machine)" state="Success" icon="sap-icon://sys-enter-2" />
+                    <VBox height="0.5rem" />
+                    <Text text="Total Planned: 16,300.00 PC" class="content1" />
+                    <Text text="Total Produced / Total Scrap: 220.00 PC / 10.00 PC" class="content1" />
+                    <Text text="Produced in Current Shift: 0.00 PC" class="content1" />
+                    <Text text="Standard Rate: 31,015.00 PC / 4.04 h" class="content1" />
                     <layoutData>
                         <l:SplitterLayoutData size="auto" />
                     </layoutData>
@@ -43,13 +39,13 @@
             </l:Splitter>
         </Panel>
 
-        <content>
-            <Table items="{/tom/}" id="tableId1" growing="true" growingThreshold="2" inset="true" noDataText="No data Found" sticky="ColumnHeaders" class="table1">
+        <!-- Speed Loss Summary Table -->
+        <Panel headerText="Speed Loss Summary" class="sapUiSmallMarginBottom oeePanel">
+            <Table items="{/tom/}" id="tableId1" growing="true" growingThreshold="4" inset="true" noDataText="No data found" sticky="ColumnHeaders">
                 <columns>
                     <Column hAlign="Center">
                         <Label text="Loading Time" design="Bold" />
                     </Column>
-
                     <Column hAlign="Center">
                         <Label text="Unscheduled Downtime" design="Bold" />
                     </Column>
@@ -69,27 +65,25 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{Loading Time}" />
-                            <Text text="{Unscheduled Downtime}" />
-                            <Text text="{Target Quantity}" />
-                            <Text text="{Reported Quantity}" />
-                            <Text text="{Reported Speed Loss}" />
-                            <Text text="{Open Speed Loss}" />
+                            <ObjectNumber number="{Loading Time}" unit="h" />
+                            <ObjectNumber number="{Unscheduled Downtime}" unit="h" state="Warning" />
+                            <ObjectNumber number="{Target Quantity}" unit="PC" />
+                            <ObjectNumber number="{Reported Quantity}" unit="PC" />
+                            <ObjectNumber number="{Reported Speed Loss}" unit="h" state="Error" />
+                            <ObjectNumber number="{Open Speed Loss}" unit="h" state="Warning" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
-        <Panel class="body1">
-            <Text text="Reported Speed Loss" class="inner1" />
         </Panel>
-        <content>
-            <Table items="{/data/}" id="tableId2" growing="true" growingThreshold="2" inset="true" noDataText="No data " sticky="ColumnHeaders" class="sapUiContentPadding">
+
+        <!-- Reported Speed Loss Details -->
+        <Panel headerText="Reported Speed Loss Details" class="oeePanel">
+            <Table items="{/data/}" id="tableId2" growing="true" growingThreshold="4" inset="true" noDataText="No data" sticky="ColumnHeaders" class="sapUiContentPadding">
                 <columns>
                     <Column hAlign="Center">
                         <Label text="Speed Loss" design="Bold" />
                     </Column>
-
                     <Column hAlign="Center">
                         <Label text="Reported by" design="Bold" />
                     </Column>
@@ -106,15 +100,15 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{Speed Loss}" />
+                            <ObjectNumber number="{Speed Loss}" unit="h" state="Error" />
                             <Text text="{Reported by}" />
-                            <Text text="{Reason Code}" />
+                            <ObjectStatus text="{Reason Code}" state="Warning" />
                             <Text text="{Comments}" />
                             <Text text="{Root cause machine}" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
+        </Panel>
     </Page>
 </mvc:View>

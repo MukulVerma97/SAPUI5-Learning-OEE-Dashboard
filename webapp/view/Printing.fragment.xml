@@ -1,11 +1,9 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
-    <Popover id="popover" showHeader="false" placement="PreferredTopOrFlip" contentWidth="10%" contentHeight="40%" ariaLabelledBy="master-title" modal="false" afterClose="reopen">
-        <NavContainer id="navCon">
-            <List id="list">
-                <StandardListItem title="Report Production" type="Active" press="onProduction" />
-                <StandardListItem title="Speed Loss" type="Active" press="onSpeed" />
-                <StandardListItem title="Downtime" press="onDowntime" type="Active" />
-            </List>
-        </NavContainer>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+    <Popover id="popover" showHeader="true" title="Quick Navigation" placement="PreferredTopOrFlip" contentWidth="220px" ariaLabelledBy="master-title" modal="false">
+        <List id="list">
+            <StandardListItem title="Report Production" type="Active" press="onProduction" icon="sap-icon://factory" />
+            <StandardListItem title="Speed Loss" type="Active" press="onSpeed" icon="sap-icon://line-chart-time-axis" />
+            <StandardListItem title="Downtime" press="onDowntime" type="Active" icon="sap-icon://wrench" />
+        </List>
     </Popover>
 </core:FragmentDefinition>

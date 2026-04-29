@@ -1,6 +1,6 @@
-<core:FragmentDefinition controllerName="Learning.controller.Downtime" xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Dialog title="Report New" id="onDialog">
-        <Table id="re" inset="false" showSeparators="Inner" items="{/okay/}">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog title="Report New Downtime" id="onDialog" contentWidth="800px" resizable="true">
+        <Table id="re" inset="false" showSeparators="Inner" items="{/minor/okay/}" noDataText="No downtime records">
             <columns>
                 <Column>
                     <Text text="Work Unit" />
@@ -42,6 +42,8 @@
                 </ColumnListItem>
             </items>
         </Table>
-        <Button icon="sap-icon://sys-cancel-2" press=".onClose" />
+        <endButton>
+            <Button text="Close" icon="sap-icon://sys-cancel-2" press=".onClose" type="Transparent" />
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>

@@ -1,12 +1,18 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Dialog>
+    <Dialog title="Product Assignment — Select Reason Code" contentWidth="750px" resizable="true" draggable="true">
+        <subHeader>
+            <OverflowToolbar>
+                <SearchField placeholder="Search products..." liveChange=".onAssignSearch" width="100%" />
+            </OverflowToolbar>
+        </subHeader>
         <Table id="Assign1Frag" items="{
                 path : '/ProductCollection',
                 sorter : {
                     path : 'Name',
                     descending : false
                 }
-            }">
+            }" noDataText="No products available" growing="true" growingThreshold="10"
+            mode="SingleSelectLeft" selectionChange=".onAssignSelect">
             <columns>
                 <Column width="12em">
                     <header>
@@ -30,31 +36,25 @@
                 </Column>
                 <Column hAlign="End">
                     <header>
-                        <Text text="Product" />
+                        <Text text="Price" />
                     </header>
                 </Column>
             </columns>
-            <ColumnListItem vAlign="Middle">
+            <ColumnListItem vAlign="Middle" type="Active">
                 <cells>
                     <ObjectIdentifier title="{Name}" text="{ProductId}" />
                     <Text text="{SupplierName}" />
                     <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
-                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
-                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
-                    <!-- <ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}" state="{
-                            path: 'WeightMeasure',
-                            formatter: 'sap.m.sample.TableSelectDialog.Formatter.weightState'
-                        }" />
-                    <ObjectNumber number="{
-                            parts:[{path:'Price'},{path:'CurrencyCode'}],
-                            type: 'sap.ui.model.type.Currency',
-                            formatOptions: {showMeasure: false}
-                        }" unit="{CurrencyCode}" /> -->
+                    <ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}" />
+                    <ObjectNumber number="{Price}" unit="{CurrencyCode}" state="Information" />
                 </cells>
             </ColumnListItem>
         </Table>
         <beginButton>
-            <Button press="handleClose" text="Close" />
+            <Button press="handleClose" text="Confirm" icon="sap-icon://accept" type="Emphasized" />
         </beginButton>
+        <endButton>
+            <Button press="handleClose" text="Cancel" icon="sap-icon://decline" type="Transparent" />
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>

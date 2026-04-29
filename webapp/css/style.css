@@ -1,104 +1,211 @@
-.reset {}
+/* ============================================================
+   OEE Manufacturing Dashboard - Professional Stylesheet
+   Supports both sap_fiori_3 (light) and sap_fiori_3_dark themes
+   ============================================================ */
 
-.sapMBtn.reset {
-    /* background-color: aqua; */
+/* ---- Global Transitions for Theme Switch ---- */
+body,
+.sapMPage,
+.sapTntToolPage,
+.sapTntToolPageContentArea,
+.sapMPanel {
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.sapMBtnInner.sapMBtnText {}
-
-.formTitle {
-    color: black;
-    text-align: center;
-    align-content: center;
-    font-weight: bolder;
-}
-
-.formHead {
-    color: black;
-    padding: 2rem;
-
-}
-
-.formPage {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(124, 168, 175, 1) 100%, rgba(0, 212, 255, 1) 100%);
-    box-sizing: border-box;
-}
-
-
-.table {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(124, 168, 175, 1) 100%, rgba(0, 212, 255, 1) 100%);
-}
-
-.pad {
-    padding: 0.2rem;
-    font-size: 0.8rem;
-    color: white;
-}
-
-
-
-.shopPage {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(124, 168, 175, 1) 100%, rgba(0, 212, 255, 1) 100%);
-}
-
-.sapMBtn.goodMorning {
-    margin-left: 10rem;
-    padding-left: 20%;
-
-}
-
-.sapMListTbl.Row {}
-
-.Oee {
-    background-color: rgb(171, 219, 227);
-}
-
-.area {}
-
-.Bmi {
-    background-color: rgb(37, 150, 190);
-}
-
-.content1 {
-    font-weight: bold;
-    color: black;
-}
-
-.active {
-    color: green;
-    font-weight: bold;
-
-}
-
-.Vbox1 {
-    margin: 1rem;
-    border: 1rem;
-    border-color: black;
-    background-color: whitesmoke;
-}
-
-.sapMInputBase.sapMTextArea .sapMTextAreaInner {
-    line-height: 1.4;
-    padding: 0.625rem 0.75rem;
-    background-color: red;
-    -webkit-overflow-scrolling: touch;
-}
-
-.untagged {
-    background-color: orange;
-    height: 10%;
-}
-
-.kp {
-
-
-    align-items: center;
-}
-.ninja{
-    color: black;
-    font-size: medium;
+/* ---- App Title ---- */
+.appTitle {
     font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ---- Clock Display ---- */
+.clockText {
+    font-family: "SF Mono", "Consolas", "Courier New", monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+/* ---- Content Label Styling ---- */
+.content1 {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* ---- Active Status ---- */
+.active {
+    font-weight: 700;
+}
+
+/* ---- OEE Page Background ---- */
+.oeePage {
+    /* works for both light/dark — uses theme vars */
+}
+
+/* ---- Panels with subtle elevation ---- */
+.oeePanel {
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.oeePanel .sapMPanelHdr {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.3px;
+}
+
+/* ---- KPI Container ---- */
+.kpiContainer {
+    padding: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ---- KPI Tiles ---- */
+.kpiTile {
+    min-width: 140px;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpiTile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Light theme KPI backgrounds */
+.kpiAvailability {
+    background: linear-gradient(135deg, rgba(16, 126, 62, 0.08), rgba(16, 126, 62, 0.15));
+    border: 1px solid rgba(16, 126, 62, 0.2);
+}
+
+.kpiSpeed {
+    background: linear-gradient(135deg, rgba(231, 140, 7, 0.08), rgba(231, 140, 7, 0.15));
+    border: 1px solid rgba(231, 140, 7, 0.2);
+}
+
+.kpiQuality {
+    background: linear-gradient(135deg, rgba(187, 0, 0, 0.08), rgba(187, 0, 0, 0.15));
+    border: 1px solid rgba(187, 0, 0, 0.2);
+}
+
+.kpiOee {
+    background: linear-gradient(135deg, rgba(8, 84, 160, 0.08), rgba(8, 84, 160, 0.15));
+    border: 1px solid rgba(8, 84, 160, 0.2);
+}
+
+.kpiValue .sapMTitle {
+    font-size: 1.75rem !important;
+    font-weight: 700;
+}
+
+.kpiLabel {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.75;
+    margin-top: 0.25rem;
+}
+
+/* ---- Untagged Bar ---- */
+.untaggedBar {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, rgba(231, 140, 7, 0.06), rgba(231, 140, 7, 0.12));
+    border-left: 4px solid #E78C07;
+}
+
+/* ---- Footer Links ---- */
+.pad {
+    padding: 0 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+/* ---- Ninja Table Text ---- */
+.ninja {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* ---- Side Navigation ---- */
+.navigate .sapTntNavLI {
+    transition: background-color 0.15s ease;
+}
+
+/* ---- VBox cards ---- */
+.Vbox1 {
+    margin: 0.5rem 0;
+    border-radius: 0.5rem;
+}
+
+/* ---- Dark Theme Overrides ---- */
+.sapTheme-sap_fiori_3_dark .kpiAvailability,
+.sapContrast .kpiAvailability {
+    background: linear-gradient(135deg, rgba(16, 126, 62, 0.15), rgba(16, 126, 62, 0.25));
+    border: 1px solid rgba(16, 126, 62, 0.35);
+}
+
+.sapTheme-sap_fiori_3_dark .kpiSpeed,
+.sapContrast .kpiSpeed {
+    background: linear-gradient(135deg, rgba(231, 140, 7, 0.15), rgba(231, 140, 7, 0.25));
+    border: 1px solid rgba(231, 140, 7, 0.35);
+}
+
+.sapTheme-sap_fiori_3_dark .kpiQuality,
+.sapContrast .kpiQuality {
+    background: linear-gradient(135deg, rgba(187, 0, 0, 0.15), rgba(187, 0, 0, 0.25));
+    border: 1px solid rgba(187, 0, 0, 0.35);
+}
+
+.sapTheme-sap_fiori_3_dark .kpiOee,
+.sapContrast .kpiOee {
+    background: linear-gradient(135deg, rgba(8, 84, 160, 0.15), rgba(8, 84, 160, 0.25));
+    border: 1px solid rgba(8, 84, 160, 0.35);
+}
+
+.sapTheme-sap_fiori_3_dark .kpiTile:hover,
+.sapContrast .kpiTile:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.sapTheme-sap_fiori_3_dark .untaggedBar,
+.sapContrast .untaggedBar {
+    background: linear-gradient(135deg, rgba(231, 140, 7, 0.1), rgba(231, 140, 7, 0.2));
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .kpiTile {
+        min-width: 100px;
+        padding: 0.75rem 1rem;
+    }
+
+    .kpiValue .sapMTitle {
+        font-size: 1.25rem !important;
+    }
+
+    .kpiContainer {
+        gap: 0.5rem;
+    }
+}
+
+/* ---- Table Enhancements ---- */
+.sapMList .sapMLIBActive {
+    transition: background-color 0.15s ease;
+}
+
+/* ---- Panel smooth appearance ---- */
+.sapMPanel {
+    overflow: hidden;
+}
+
+/* ---- Dialog polish ---- */
+.sapMDialog {
+    border-radius: 0.75rem;
 }

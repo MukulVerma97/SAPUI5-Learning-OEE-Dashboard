@@ -1,41 +1,44 @@
-<mvc:View controllerName="Learning.controller.Manage" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:viz="sap.viz.ui5.controls" xmlns:chart="sap.suite.ui.commons" xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds" xmlns:form="sap.ui.layout.form">
-    <Page showHeader="true">
-        <HBox>
-            <CheckBox text="all" selected="false" id="dd" select="onSelect" />
-            <CheckBox text="uchiha" selected="false" id="aa" select="onSelect" />
-            <CheckBox text="uzumaki" selected="false" id="bb" select="onSelect" />
-            <CheckBox text="hatake" selected="false" id="cc" select="onSelect" />
-            <ToolbarSpacer />
-            <Button icon="sap-icon://refresh" text="" type="Transparent" press="onPressRefresh" />
-            <Button icon="sap-icon://sort" text="" type="Transparent" press=".onSecond" />
-        </HBox>
-        <Table items="{empData>/Rowsets/Rowset/0/Row}" id="table">
+<mvc:View controllerName="Learning.controller.Manage" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt">
+    <Page showHeader="true" title="Manage Ninja Orders" showNavButton="true" navButtonPress="onPressNavButton" class="sapUiContentPadding oeePage">
+        <headerContent>
+            <Button icon="sap-icon://home" type="Transparent" press="onPressNavButton" tooltip="Back to OEE" />
+        </headerContent>
+        <subHeader>
+            <OverflowToolbar>
+                <CheckBox text="All" selected="false" id="dd" select="onSelect" />
+                <CheckBox text="Uchiha" selected="false" id="aa" select="onSelect" />
+                <CheckBox text="Uzumaki" selected="false" id="bb" select="onSelect" />
+                <CheckBox text="Hatake" selected="false" id="cc" select="onSelect" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://refresh" type="Transparent" press="onPressRefresh" tooltip="Refresh" />
+                <Button icon="sap-icon://sort" type="Transparent" press="onSort" tooltip="Sort" />
+            </OverflowToolbar>
+        </subHeader>
+        <Table items="{empData>/Rowsets/Rowset/0/Row}" id="table" noDataText="No ninja records found" growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
             <columns>
-                <Column width="10%">
+                <Column width="15%">
                     <Text text="Ninja Id" />
                 </Column>
-                <Column width="10%">
+                <Column width="20%">
                     <Text text="Ninja Name" />
                 </Column>
-                <Column width="10%">
+                <Column width="20%">
                     <Text text="Ninja House" />
                 </Column>
-                <Column width="10%">
-                    <Text text="Signature" />
+                <Column width="25%">
+                    <Text text="Signature Jutsu" />
                 </Column>
-
-                <Column width="10%">
-                    <Text text="Sensie" />
+                <Column width="20%">
+                    <Text text="Sensei" />
                 </Column>
             </columns>
             <items>
-                <ColumnListItem>
+                <ColumnListItem type="Active">
                     <cells>
-                        <Text text="{empData>Ninja_Id}" />
-                        <Text text="{empData>Ninja_Name}" />
-                        <Text text="{empData>Ninja_house}" />
+                        <ObjectIdentifier title="{empData>Ninja_Id}" />
+                        <Text text="{empData>Ninja_Name}" class="ninja" />
+                        <ObjectStatus text="{empData>Ninja_house}" state="Information" />
                         <Text text="{empData>Signatur_Jutsu}" />
-
                         <Text text="{empData>sensei}" />
                     </cells>
                 </ColumnListItem>
